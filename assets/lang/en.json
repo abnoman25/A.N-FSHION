@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "offerBadge": "Special Eid Offer 2025",
+    "heading": "Eid Ul Adha Collection",
+    "description": "Wholesale & Retail Available — Traditional Panjabi Styles",
+    "viewCollectionButton": "View Collection"
+  },
+  "features": {
+    "heading": "Why Choose Our Panjabi?",
+    "description": "Experience elegance, comfort, and quality this Eid.",
+    "quality": {
+      "title": "Premium Quality Fabric",
+      "description": "Crafted with soft, breathable material perfect for festive occasions."
+    },
+    "fit": {
+      "title": "Tailored Fit",
+      "description": "Modern and traditional styles with precise stitching and elegant finish."
+    },
+    "delivery": {
+      "title": "Fast Delivery",
+      "description": "Quick shipping with cash-on-delivery service available in major areas."
+    }
+  },
+  "products": {
+    "heading": "Our Panjabi Collection",
+    "price": "Price:",
+    "size": "Size:",
+    "color": "Color:",
+    "quantity": "Quantity:",
+    "addToCartButton": "Add to Cart"
+  },
+  "orderForm": {
+    "heading": "Place Your Order",
+    "name": "Name",
+    "namePlaceholder": "Enter your full name",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "address": "Full Address",
+    "addressPlaceholder": "Enter your delivery address",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "Add any special instructions (optional)",
+    "shipping": "Shipping:",
+    "total": "Total:",
+    "confirmOrderButton": "Confirm Order - Pay on Delivery",
+    "preferOrder":"Prefer to order directly?",
+    "callButton": "Call",
+    "emailButton": "Email",
+    "whatsappButton": "WhatsApp"
+  },
+  "alerts": {
+    "cartEmpty": "🛒 Please add at least one product before submitting the order.",
+    "orderSuccess": "✅ Thank you! Your order has been received.",
+    "addedToCart": "✅ Added {qty} × {title} to cart"
+  }
+}

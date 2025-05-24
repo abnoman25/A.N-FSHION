@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: #f2f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .thank-you-container {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .thank-you-container h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #28a745;
+    }
+
+    .thank-you-container p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .thank-you-container .checkmark {
+      font-size: 4rem;
+      color: #28a745;
+      margin-bottom: 1rem;
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #28a745;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-back:hover {
+      background-color: #218838;
+    }
+
+    @media (max-width: 480px) {
+      .thank-you-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .thank-you-container p {
+        font-size: 1rem;
+      }
+
+      .thank-you-container .checkmark {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you-container">
+    <div class="checkmark">✅</div>
+    <h1>Your request has been received successfully</h1>
+    <p>Thank you for shopping with us! We will contact you soon to confirm the details.</p>
+    <a href="index.html" class="btn-back">Back to home</a>
+  </div>
+</body>
+</html>

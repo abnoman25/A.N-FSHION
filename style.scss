@@ -1,0 +1,445 @@
+// ===========================
+// 🎨 Variables
+// ===========================
+
+// الألوان الأساسية
+$secondary-color: #f8f9fa;
+$text-color: #212529;
+$bg-color: #ffffff;
+$accent-color: #ffc107; // أصفر للتنبيهات أو العروض
+
+$primary-color: #d4af37; // اللون الذهبي
+$white: #ffffff;
+$black: #000000;
+$overlay-color: rgba(0, 0, 0, 0.5);
+$hero-height: 80vh;
+// الخطوط
+$base-font: 'Segoe UI', sans-serif;
+$heading-font: 'Segoe UI', sans-serif;
+$text-muted: #6c757d;
+
+$header-bg-color: #121212;
+$header-logo-color: #c1982d; // لون اسم المتجر التي في الهيدر
+$offer-badge_addtocart-btn-bg-color: #d4af37;
+$hero-heading_sections-heading-color: #f5f5f5;
+$features-icons_features-card-heading-color: #d4af37;
+$confirm-order-btn-bg-color: #d4af37;
+$footer-bg-color: #121212;
+$floating-cart-btn-bg-color: #d4af37;
+
+
+// ===========================
+// 📐 إعدادات عامة
+// ===========================
+body {
+  font-family: $base-font;
+  background-color: $bg-color;
+  color: $text-color !important;
+  line-height: 1.6;
+}
+h1, h2, h3, h4, h5 {
+  font-family: $heading-font;
+  font-weight: bold;
+  color: $primary-color;
+}
+a {
+  color: $primary-color;
+  text-decoration: none;
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+}
+// تأثير التركيز لجميع الحقول في النماذج والمقاسات والألوان والأزرار
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(222, 184, 135, 0.5) !important; // بيج ذهبي ناعم
+  transition: box-shadow 0.2s ease-in-out !important;
+  border-color: rgba(222, 184, 135, 0.8) !important;
+}
+
+
+// 🧱 أقسام الصفحة
+// ===========================
+// ===========================
+// ===========================
+// الهيدر (Header)
+// ===========================
+header {
+  background-color: $header-bg-color;
+  color: $white;
+  padding: 1rem 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: $header-logo-color;
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+// ===========================
+// قسم البطل (Hero Section)
+// ===========================
+.hero {
+  min-height: $hero-height;
+  position: relative;
+  overflow: hidden;
+
+  .carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    .carousel-item {
+      height: 100%;
+
+      .hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.6);
+      }
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px 20px;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $hero-heading_sections-heading-color;
+    }
+
+    p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .btn-primary {
+      font-size: 1rem;
+      padding: 10px 25px;
+      border-radius: 50px;
+      background-color: $primary-color;
+      border: none;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background-color: #d4af37;
+      color: $black;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+
+      i {
+        color: red;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .btn-primary {
+        font-size: 0.95rem;
+        padding: 8px 20px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    min-height: 60vh;
+
+    .hero-content {
+      padding: 40px 15px;
+
+      h1 {
+        font-size: 1.6rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      .btn-primary {
+        font-size: 0.85rem;
+        padding: 8px 18px;
+      }
+    }
+  }
+}
+
+// ===========================
+// قسم المميزات (Features Section)
+// ===========================
+.features {
+  background-color: #fff;
+  padding: 60px 20px;
+
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 1.1rem;
+  }
+
+  .feature-box {
+    background-color: #fcfcfc;
+    border-radius: 20px;
+    padding: 30px 20px;
+    transition: all 0.3s ease-in-out;
+
+    i {
+      color: $primary-color;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    h5 {
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    &:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // استجابة للجوالات
+  @media (max-width: 576px) {
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .feature-box {
+      padding: 20px 15px;
+
+      h5 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      i {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+// ===========================
+// قسم المنتجات (Products Section)
+// ===========================
+.product-card {
+  border: 1px solid #dee2e6;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: $secondary-color;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  .carousel-inner {
+    img {
+      height: 300px;
+      object-fit: cover;
+      @media (max-width: 768px) {
+        max-height: 250px;
+      }
+      @media (max-width: 576px) {
+        height: 220px;
+      }
+    }
+  }
+
+  .card-body {
+    h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      min-height: 35px;
+    }
+
+    .small {
+      font-size: 0.8rem;
+      min-height: 1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+
+    }
+    .product-price {
+      max-height: 16px;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-select {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.5rem;
+    }
+
+    .en-numbers {
+      font-size: 0.8rem;
+      direction: ltr;
+      unicode-bidi: plaintext;
+    }
+  }
+  @media (max-width: 768px) {
+    max-height: 600px !important;
+  }
+}
+
+// ===========================
+// قسم نموذج الطلب (Order Form)
+// ===========================
+.order-form {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.confirm-order-btn {
+  background-color: $confirm-order-btn-bg-color !important;
+    color: $white !important;
+    font-size: 1.2rem !important;
+    padding: 10px 20px !important;
+    border-radius: 50px !important;
+    border: none;
+  
+    &:hover {
+      background-color: darken($confirm-order-btn-bg-color, 10%) !important;
+    }
+}
+sup {
+  color: red;
+}
+
+#cart-items .btn {
+  margin: 0 2px;
+}
+
+.footer {
+  a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+    &:hover {
+      color: #ffc107;
+    }
+  }
+
+  i {
+    vertical-align: middle;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+// ===========================
+// 💬 زر الواتساب
+// ===========================
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  font-size: 20px;
+  padding: 12px 16px;
+  border-radius: 50%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  &:hover {
+    background-color: darken(#25D366, 10%);
+    text-decoration: none;
+  }
+}
+
+#floating-cart-btn {
+  transition: opacity 0.3s ease;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+}
+
+#cart-count-badge {
+  font-size: 0.75rem;
+  padding: 4px 6px;
+}
+
+#langToggleBtn {
+  padding: 5px 15px;
+  margin-right: 10px;
+  border: 1px solid $white;
+  background: transparent;
+  color: $white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $white;
+    color: $header-bg-color;
+  }
+
+  &.active {
+    background: $white;
+    color: $header-bg-color;
+  }
+}
