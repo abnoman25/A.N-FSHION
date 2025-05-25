@@ -42,6 +42,8 @@
     "notesPlaceholder": "Add any special instructions (optional)",
     "shipping": "Shipping:",
     "total": "Total:",
+    "order_submission_note1": "* You will be contacted shortly after submitting the application to confirm the application",
+    "order_submission_note2": "* If you are not contacted within 10 hours, please contact us directly or contact us via WhatsApp",
     "confirmOrderButton": "Confirm Order - Pay on Delivery",
     "preferOrder":"Prefer to order directly?",
     "callButton": "Call",
