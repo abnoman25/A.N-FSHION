@@ -27,7 +27,8 @@
     "size": "Size:",
     "color": "Color:",
     "quantity": "Quantity:",
-    "addToCartButton": "Add to Cart"
+    "addToCartButton": "Add to Cart",
+    "buyNowButton": "Buy Now"
   },
   "orderForm": {
     "heading": "Place Your Order",

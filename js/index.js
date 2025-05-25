@@ -1,31 +1,78 @@
 document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".card-body").forEach(card => {
+    const seeMore = card.querySelector(".see-more-link");
+    const seeLess = card.querySelector(".see-less-link");
+    const popup = card.querySelector(".full-description-popup");
+
+    seeMore?.addEventListener("click", (e) => {
+      e.preventDefault();
+      // إضافة الصف show للحصول على التأثير الحركي
+      popup.classList.add("show");
+      seeMore.style.opacity = "0";
+    });
+
+    seeLess?.addEventListener("click", (e) => {
+      e.preventDefault();
+      // إزالة الصف show للحصول على التأثير الحركي
+      popup.classList.remove("show");
+      setTimeout(() => {
+        seeMore.style.opacity = "1";
+      }, 300);
+    });
+
+    // إغلاق النافذة عند الضغط خارجها
+    document.addEventListener("click", (e) => {
+      if (popup && !popup.contains(e.target) && !seeMore.contains(e.target)) {
+        popup.classList.remove("show");
+        setTimeout(() => {
+          seeMore.style.opacity = "1";
+        }, 300);
+      }
+    });
+  });
+
   const cart = [];
   const SHIPPING_COST = 120;
 
-  // إضافة المنتج إلى السلة
+  // دالة إضافة المنتج للسلة
+  function addToCart(btn, isBuyNow = false) {
+    const card = btn.closest(".card");
+    const productId = card.dataset.productId;
+    const title = card.querySelector(".card-title").textContent;
+    const price = parseFloat(card.querySelector(".product-price").dataset.price);
+    const sale = parseFloat(card.querySelector(".product-price").dataset.sale);
+    const size = card.querySelector(".size-select").value;
+    const color = card.querySelector(".color-select").value;
+    const qty = parseInt(card.querySelector(".qty-input").value) || 1;
+
+    const existingProduct = cart.find(
+      (item) => item.productId === productId && item.size === size && item.color === color
+    );
+
+    if (existingProduct) {
+      existingProduct.qty += qty;
+    } else {
+      cart.push({ productId, title, price, sale, size, color, qty });
+    }
+
+    updateCartDisplay();
+    
+    if (isBuyNow) {
+      document.getElementById("order-form").scrollIntoView({ 
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+    
+    showAlert(`✅ Added ${qty} × ${title} to cart`);
+  }
+  // تحديث معالجات الأحداث للأزرار
+  document.querySelectorAll(".buy-now-btn").forEach((btn) => {
+    btn.addEventListener("click", () => addToCart(btn, true));
+  });
+
   document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const card = btn.closest(".card");
-      const title = card.querySelector(".card-title").textContent;
-      const price = parseFloat(card.querySelector(".product-price").dataset.price);
-      const sale = parseFloat(card.querySelector(".product-price").dataset.sale);
-      const size = card.querySelector(".size-select").value;
-      const color = card.querySelector(".color-select").value;
-      const qty = parseInt(card.querySelector(".qty-input").value) || 1;
-
-      const existingProduct = cart.find(
-        (item) => item.title === title && item.size === size && item.color === color
-      );
-
-      if (existingProduct) {
-        existingProduct.qty += qty;
-      } else {
-        cart.push({ title, price, sale, size, color, qty });
-      }
-
-      updateCartDisplay();
-      showAlert(`✅ Added ${qty} × ${title} to cart`);
-    });
+    btn.addEventListener("click", () => addToCart(btn, false));
   });
 
   // تحديث عرض السلة
@@ -99,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const productInput = document.getElementById("product-input");
     if (productInput) {
       const orderSummary = cart.map(item =>
+        `Product ID: ${item.productId}\n` +
         `${t.product}: ${item.title}\n` +
         `${t.size}: ${item.size}\n` +
         `${t.color}: ${item.color}\n` +
@@ -222,6 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ تجميع كل تفاصيل الطلب
     const orderSummary = cart.map(item =>
+      `Product ID: ${item.productId}\n` +
       `Product: ${item.title}\n` +
       `Size: ${item.size}\n` +
       `Color: ${item.color}\n` +

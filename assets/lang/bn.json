@@ -27,7 +27,8 @@
     "size": "সাইজ:",
     "color": "রঙ:",
     "quantity": "পরিমাণ:",
-    "addToCartButton": "কার্টে যোগ করুন"
+    "addToCartButton": "কার্টে যোগ করুন",
+    "buyNowButton": "এখনই কিনুন"
   },
   "orderForm": {
     "heading": "আপনার অর্ডার করুন",
