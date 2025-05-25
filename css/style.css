@@ -444,22 +444,26 @@ sup {
 }
 
 #langToggleBtn {
-  padding: 5px 15px;
-  margin-right: 10px;
-  border: 1px solid #ffffff;
-  background: transparent;
-  color: #ffffff;
-  border-radius: 4px;
-  cursor: pointer;
+  min-width: 50px;
+  border-color: #d4af37;
+  color: #d4af37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem !important;
   transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 4px 0 !important;
+}
+#langToggleBtn:active, #langToggleBtn.active, #langToggleBtn:focus {
+  background-color: transparent !important;
+  border-color: #d4af37 !important;
+  color: #d4af37 !important;
 }
 #langToggleBtn:hover {
-  background: #ffffff;
-  color: #121212;
-}
-#langToggleBtn.active {
-  background: #ffffff;
-  color: #121212;
+  background-color: #d4af37 !important;
+  color: #ffffff !important;
+  border-color: #d4af37 !important;
 }
 
 .highlight {

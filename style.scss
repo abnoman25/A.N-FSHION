@@ -555,23 +555,31 @@ sup {
 }
 
 #langToggleBtn {
-  padding: 5px 15px;
-  margin-right: 10px;
-  border: 1px solid $white;
-  background: transparent;
-  color: $white;
-  border-radius: 4px;
-  cursor: pointer;
+  min-width: 50px;
+  border-color: $primary-color;
+  color: $primary-color;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem !important;
   transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 4px 0 !important;
 
-  &:hover {
-    background: $white;
-    color: $header-bg-color;
+  // تجاوز تنسيقات Bootstrap عند تفعيل الزر
+  &:active,
+  &.active,
+  &:focus {
+    background-color: transparent !important;
+    border-color: $primary-color !important;
+    color: $primary-color !important;
   }
 
-  &.active {
-    background: $white;
-    color: $header-bg-color;
+  // تنسيق حالة التحويم
+  &:hover {
+    background-color: $primary-color !important;
+    color: $white !important;
+    border-color: $primary-color !important;
   }
 }
 
