@@ -62,14 +62,26 @@ header .container h1 {
   inset: 0;
   z-index: 1;
 }
-.hero .carousel .carousel-item {
+.hero .carousel .carousel-inner {
   height: 100%;
 }
-.hero .carousel .carousel-item .hero-img {
+.hero .carousel .carousel-inner .carousel-item {
+  height: 100%;
+}
+.hero .carousel .carousel-inner .carousel-item .hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 50%;
   filter: brightness(0.6);
+}
+.hero .carousel .carousel-inner .carousel-item .hero-img[src*="logo.jpg"] {
+  object-position: center center;
+}
+@media (min-width: 768px) {
+  .hero .carousel .carousel-inner .carousel-item .hero-img[src*="logo.jpg"] {
+    object-position: center 40%;
+  }
 }
 .hero .hero-content {
   position: relative;
@@ -448,6 +460,25 @@ sup {
 #langToggleBtn.active {
   background: #ffffff;
   color: #121212;
+}
+
+.highlight {
+  animation: highlightProduct 2s ease-out;
+}
+
+@keyframes highlightProduct {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

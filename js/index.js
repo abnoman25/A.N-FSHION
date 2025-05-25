@@ -305,5 +305,25 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ خله يتوجه تلقائيًا إلى صفحة الشكر عبر Formsubmit
   });
 
-
+  // التحقق من وجود قفز في الرابط
+  if (window.location.hash) {
+    const productId = window.location.hash;
+    const targetProduct = document.querySelector(productId);
+    
+    if (targetProduct) {
+      // انتظر قليلاً للتأكد من تحميل الصفحة بالكامل
+      setTimeout(() => {
+        targetProduct.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center'
+        });
+        
+        // إضافة تأثير لتمييز المنتج المحدد
+        targetProduct.classList.add('highlight');
+        setTimeout(() => {
+          targetProduct.classList.remove('highlight');
+        }, 2000);
+      }, 500);
+    }
+  }
 });

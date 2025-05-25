@@ -105,15 +105,27 @@ header {
     position: absolute;
     inset: 0;
     z-index: 1;
-
-    .carousel-item {
+    .carousel-inner {
       height: 100%;
 
-      .hero-img {
-        width: 100%;
+      .carousel-item {
         height: 100%;
-        object-fit: cover;
-        filter: brightness(0.6);
+  
+        .hero-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 50%;
+          filter: brightness(0.6);
+  
+          // تخصيص موضع صورة الشعار
+          &[src*="logo.jpg"] {
+            object-position: center center; // التركيز في وسط الشعار
+            @media (min-width: 768px) {
+              object-position: center 40%; // ضبط موضع الشعار في الشاشات الكبيرة
+            }
+          }
+        }
       }
     }
   }
@@ -560,5 +572,25 @@ sup {
   &.active {
     background: $white;
     color: $header-bg-color;
+  }
+}
+
+// تأثير التمييز للمنتج المحدد
+.highlight {
+  animation: highlightProduct 2s ease-out;
+}
+
+@keyframes highlightProduct {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba($primary-color, 0);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba($primary-color, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba($primary-color, 0);
   }
 }
