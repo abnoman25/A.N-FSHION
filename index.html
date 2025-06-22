@@ -35,19 +35,15 @@
 
   <!-- Hero Section -->
   <section class="hero text-white d-flex align-items-center" id="hero">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
-      <div class="carousel-inner">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">      <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="assets/images/logo.jpg" class="d-block w-100 hero-img" alt="Panjabi 1">
+          <img src="assets/images/logo.jpg" class="d-block w-100 hero-img" alt="Panjabi 1" loading="lazy">
         </div>
         <div class="carousel-item">
-          <img src="assets/images/Hero2.jpg" class="d-block w-100 hero-img" alt="Panjabi 2">
+          <img src="assets/images/Hero2.jpg" class="d-block w-100 hero-img" alt="Panjabi 2" loading="lazy">
         </div>
         <div class="carousel-item">
-          <img src="assets/images/Hero3.jpg" class="d-block w-100 hero-img" alt="Panjabi 3">
-        </div>
-        <div class="carousel-item">
-          <img src="assets/images/Hero4.jpg" class="d-block w-100 hero-img" alt="Panjabi 3">
+          <img src="assets/images/Hero3.jpg" class="d-block w-100 hero-img" alt="Panjabi 3" loading="lazy">
         </div>
       </div>
     </div>
@@ -56,8 +52,6 @@
     <div class="container text-center hero-content">
       <div class="offer-badge mb-3">
         <span data-i18n="hero.offerBadge">Special Eid Offer 2025</span>
-        <i class="bi bi-fire"></i>
-        <i class="bi bi-fire"></i>
       </div>
       <h1 class="display-4 fw-bold mb-3" data-i18n="hero.heading">Eid Ul Adha Collection</h1>
       <p class="lead mb-4" data-i18n="hero.description">Wholesale & Retail Available — Traditional Panjabi Styles</p>
@@ -73,16 +67,15 @@
         <!-- Product Card -->
         <div class="col-sm-6 col-md-4" id="product-PNJ001">
           <div class="card product-card" data-product-id="PNJ001">
-            <div id="carouselProduct1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-              <div class="carousel-inner">
+            <div id="carouselProduct1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">              <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="assets/images/product1/WhatsApp Image 2025-05-24 at 4.26.25 PM.jpeg" class="d-block w-100" alt="Black Panjabi">
+                  <img src="assets/images/product1/WhatsApp Image 2025-05-24 at 4.26.25 PM.jpeg" class="d-block w-100" alt="Black Panjabi" loading="lazy">
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/images/product1/WhatsApp Image 2025-05-24 at 4.26.27 PM.jpeg" class="d-block w-100" alt="Black Panjabi Alt">
+                  <img src="assets/images/product1/WhatsApp Image 2025-05-24 at 4.26.27 PM.jpeg" class="d-block w-100" alt="Black Panjabi Alt" loading="lazy">
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/images/img3.jpeg" class="d-block w-100" alt="Black Panjabi Alt 2">
+                  <img src="assets/images/img3.jpeg" class="d-block w-100" alt="Black Panjabi Alt 2" loading="lazy">
                 </div>
               </div>
               <div class="carousel-indicators">
@@ -128,22 +121,25 @@
             
               <!-- Size & Color in one row -->
               <div class="row mb-2">
+                <!-- المقاسات -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.size">Size:</label>
-                  <select class="form-select size-select product-size">
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                  </select>
+                  <div class="size-select">
+                    <button type="button" class="size-btn">M</button>
+                    <button type="button" class="size-btn selected">L</button>
+                    <button type="button" class="size-btn">XL</button>
+                  </div>
                 </div>
+              
+                <!-- الألوان -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.color">Color:</label>
-                  <select class="form-select color-select product-color">
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Liver</option>
-                  </select>
+                  <div class="color-select">
+                    <button type="button" class="color-swatch" style="--color: #000000;" title="Black"></button>
+                    <button type="button" class="color-swatch selected" style="--color: #2196F3;" title="Blue"></button>
+                    <button type="button" class="color-swatch" style="--color: #ffffff;" title="White"></button>
+                    <button type="button" class="color-swatch" style="--color: #4E342E;" title="Liver"></button>
+                  </div>
                 </div>
               </div>
             
@@ -222,22 +218,25 @@
             
               <!-- Size & Color in one row -->
               <div class="row mb-2">
+                <!-- المقاسات -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.size">Size:</label>
-                  <select class="form-select size-select product-size">
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                  </select>
+                  <div class="size-select">
+                    <button type="button" class="size-btn">M</button>
+                    <button type="button" class="size-btn selected">L</button>
+                    <button type="button" class="size-btn">XL</button>
+                  </div>
                 </div>
+              
+                <!-- الألوان -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.color">Color:</label>
-                  <select class="form-select color-select product-color">
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Liver</option>
-                  </select>
+                  <div class="color-select">
+                    <button type="button" class="color-swatch" style="--color: #000000;" title="Black"></button>
+                    <button type="button" class="color-swatch selected" style="--color: #2196F3;" title="Blue"></button>
+                    <button type="button" class="color-swatch" style="--color: #ffffff;" title="White"></button>
+                    <button type="button" class="color-swatch" style="--color: #4E342E;" title="Liver"></button>
+                  </div>
                 </div>
               </div>
             
@@ -319,22 +318,25 @@
             
               <!-- Size & Color in one row -->
               <div class="row mb-2">
+                <!-- المقاسات -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.size">Size:</label>
-                  <select class="form-select size-select product-size">
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                  </select>
+                  <div class="size-select">
+                    <button type="button" class="size-btn">M</button>
+                    <button type="button" class="size-btn selected">L</button>
+                    <button type="button" class="size-btn">XL</button>
+                  </div>
                 </div>
+              
+                <!-- الألوان -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.color">Color:</label>
-                  <select class="form-select color-select product-color">
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Liver</option>
-                  </select>
+                  <div class="color-select">
+                    <button type="button" class="color-swatch" style="--color: #000000;" title="Black"></button>
+                    <button type="button" class="color-swatch selected" style="--color: #2196F3;" title="Blue"></button>
+                    <button type="button" class="color-swatch" style="--color: #ffffff;" title="White"></button>
+                    <button type="button" class="color-swatch" style="--color: #4E342E;" title="Liver"></button>
+                  </div>
                 </div>
               </div>
             
@@ -417,22 +419,25 @@
             
               <!-- Size & Color in one row -->
               <div class="row mb-2">
+                <!-- المقاسات -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.size">Size:</label>
-                  <select class="form-select size-select product-size">
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                  </select>
+                  <div class="size-select">
+                    <button type="button" class="size-btn">M</button>
+                    <button type="button" class="size-btn selected">L</button>
+                    <button type="button" class="size-btn">XL</button>
+                  </div>
                 </div>
+              
+                <!-- الألوان -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.color">Color:</label>
-                  <select class="form-select color-select product-color">
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Liver</option>
-                  </select>
+                  <div class="color-select">
+                    <button type="button" class="color-swatch" style="--color: #000000;" title="Black"></button>
+                    <button type="button" class="color-swatch selected" style="--color: #2196F3;" title="Blue"></button>
+                    <button type="button" class="color-swatch" style="--color: #ffffff;" title="White"></button>
+                    <button type="button" class="color-swatch" style="--color: #4E342E;" title="Liver"></button>
+                  </div>
                 </div>
               </div>
             
@@ -516,22 +521,25 @@
             
               <!-- Size & Color in one row -->
               <div class="row mb-2">
+                <!-- المقاسات -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.size">Size:</label>
-                  <select class="form-select size-select product-size">
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                  </select>
+                  <div class="size-select">
+                    <button type="button" class="size-btn">M</button>
+                    <button type="button" class="size-btn selected">L</button>
+                    <button type="button" class="size-btn">XL</button>
+                  </div>
                 </div>
+              
+                <!-- الألوان -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.color">Color:</label>
-                  <select class="form-select color-select product-color">
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Liver</option>
-                  </select>
+                  <div class="color-select">
+                    <button type="button" class="color-swatch" style="--color: #000000;" title="Black"></button>
+                    <button type="button" class="color-swatch selected" style="--color: #2196F3;" title="Blue"></button>
+                    <button type="button" class="color-swatch" style="--color: #ffffff;" title="White"></button>
+                    <button type="button" class="color-swatch" style="--color: #4E342E;" title="Liver"></button>
+                  </div>
                 </div>
               </div>
             
@@ -610,22 +618,25 @@
             
               <!-- Size & Color in one row -->
               <div class="row mb-2">
+                <!-- المقاسات -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.size">Size:</label>
-                  <select class="form-select size-select product-size">
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                  </select>
+                  <div class="size-select">
+                    <button type="button" class="size-btn">M</button>
+                    <button type="button" class="size-btn selected">L</button>
+                    <button type="button" class="size-btn">XL</button>
+                  </div>
                 </div>
+              
+                <!-- الألوان -->
                 <div class="col">
                   <label class="form-label" data-i18n="products.color">Color:</label>
-                  <select class="form-select color-select product-color">
-                    <option>Black</option>
-                    <option>Blue</option>
-                    <option>White</option>
-                    <option>Liver</option>
-                  </select>
+                  <div class="color-select">
+                    <button type="button" class="color-swatch" style="--color: #000000;" title="Black"></button>
+                    <button type="button" class="color-swatch selected" style="--color: #2196F3;" title="Blue"></button>
+                    <button type="button" class="color-swatch" style="--color: #ffffff;" title="White"></button>
+                    <button type="button" class="color-swatch" style="--color: #4E342E;" title="Liver"></button>
+                  </div>
                 </div>
               </div>
             
@@ -686,34 +697,37 @@
   <!-- Order Form -->
   <section id="order-form" class="py-5 bg-light">
     <div class="container">
-      <h3 class="text-center mb-4" data-i18n="orderForm.heading">Place Your Order</h3>
-      <form action="https://formsubmit.co/0864128ce1ba0dcff33ca5e4c6379285" method="POST" class="row g-3 needs-validation" novalidate>
-
-        <!-- إعدادات Formsubmit -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://abnoman25.github.io/A.N-FSHION/thanks.html">
-        <input type="hidden" name="product" id="product-input">
-        <input type="hidden" name="total_price" id="total-price-input">
-
-        <!-- الاسم -->
+      <h3 class="text-center mb-4" data-i18n="orderForm.heading">Place Your Order</h3>      <form id="checkout-form" class="row g-3 needs-validation" novalidate>        <!-- الاسم -->
         <div class="col-md-6">
-          <label class="form-label" data-i18n="orderForm.name">Name <sup>*</sup></label>
-          <input type="text" name="name" class="form-control" placeholder="Enter your name" required data-placeholder="orderForm.namePlaceholder">
+          <label class="form-label" data-i18n="orderForm.name">Name</label> <sup>*</sup>
+          <input type="text" name="customer-name" class="form-control" placeholder="Enter your name" required data-placeholder="orderForm.namePlaceholder">
           <div class="invalid-feedback">Please enter your name.</div>
         </div>
 
         <!-- رقم الجوال -->
         <div class="col-md-6">
-          <label class="form-label"data-i18n="orderForm.phone">Phone Number <sup>*</sup></label>
-          <input type="tel" name="phone" class="form-control" placeholder="01XXXXXXXXX" pattern="01[0-9]{9}" maxlength="11" minlength="11" required data-placeholder="orderForm.phonePlaceholder">
+          <label class="form-label"data-i18n="orderForm.phone">Phone Number</label> <sup>*</sup>
+          <input type="tel" name="customer-phone" class="form-control" placeholder="01XXXXXXXXX" pattern="01[0-9]{9}" maxlength="11" minlength="11" required data-placeholder="orderForm.phonePlaceholder">
           <div class="invalid-feedback">Please enter your phone number.</div>
+        </div>
+
+        <!-- البريد الإلكتروني -->
+        <div class="col-md-6">
+          <label class="form-label" data-i18n="orderForm.email">Email (optional)</label>
+          <input type="email" name="customer-email" class="form-control" placeholder="Enter your email" data-placeholder="orderForm.emailPlaceholder">
+        </div>
+
+        <!-- المدينة -->
+        <div class="col-md-6">
+          <label class="form-label" data-i18n="orderForm.city">City</label> <sup>*</sup>
+          <input type="text" name="customer-city" class="form-control" placeholder="Enter your city" required data-placeholder="orderForm.cityPlaceholder">
+          <div class="invalid-feedback">Please enter your city.</div>
         </div>
 
         <!-- العنوان -->
         <div class="col-12">
-          <label class="form-label" data-i18n="orderForm.address">Full Address <sup>*</sup></label>
-          <textarea name="address" rows="2" class="form-control" placeholder="Enter your full address: House number, area, street name, region, city..." required data-placeholder="orderForm.addressPlaceholder"></textarea>
+          <label class="form-label" data-i18n="orderForm.address">Shipping Address</label> <sup>*</sup>
+          <textarea name="customer-address" rows="2" class="form-control" placeholder="Enter your full address: House number, area, street name, region, city..." required data-placeholder="orderForm.addressPlaceholder"></textarea>
           <div class="invalid-feedback">Please enter your full address.</div>
         </div>
 
@@ -730,13 +744,38 @@
             <!-- سيتم إدراج المنتجات هنا -->
           </div>
         </div>
-  
-        <!-- الأسعار -->
+
+        <!-- Coupon Section -->
         <div class="mb-3">
-          <strong data-i18n="orderForm.shipping">Shipping: </strong> ৳120
+          <label for="coupon-code" class="form-label" data-i18n="orderForm.couponCode">Have a Coupon?</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="coupon-code" placeholder="Enter coupon code" data-placeholder="orderForm.couponCodePlaceholder">
+            <button class="btn btn-outline-secondary" type="button" id="apply-coupon" data-i18n="orderForm.applyCouponButton">Apply</button>
+          </div>
+          <div id="coupon-message" class="form-text"></div>
+          <div id="discount-amount" class="text-success mt-2"></div>
         </div>
-        <div class="mb-3">
-          <strong data-i18n="orderForm.total">Total: </strong> <span id="total-price">৳0</span>
+
+        <!-- Order Summary -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title" data-i18n="orderForm.orderSummary">Order Summary</h5>
+            <div class="d-flex justify-content-between mb-2">
+              <span data-i18n="orderForm.subtotal">Subtotal:</span>
+              <span id="subtotal-price"></span>
+            </div>            <div class="d-flex justify-content-between mb-2">
+              <span data-i18n="orderForm.shipping">Shipping:</span>
+              <span id="shipping-cost">৳80</span>
+            </div>            <div class="d-flex justify-content-between mb-2 text-success" id="discount-row" style="display: none;">
+              <span data-i18n="orderForm.discount">Discount:</span>
+              <span id="discount-price">-৳0</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <strong data-i18n="orderForm.total">Total:</strong>
+              <strong id="total-price"></strong>
+            </div>
+          </div>
         </div>
 
         <span class="text-center" style="color: red;" data-i18n="orderForm.order_submission_note1">* You will be contacted shortly after submitting the application to confirm the application</span>
@@ -792,14 +831,97 @@
         <!-- الحقوق -->
         <div class="col-md-4 mb-3">
           <h5 class="text-uppercase mb-3">A.N FASHION</h5>
+          <a href="privacy.html" style="color: #ffffff;">Privacy Policy</a>
           <p class="mb-0">&copy; 2025 All rights reserved.</p>
         </div>
       </div>
     </div>
   </footer>
-
-
-  <script src="js/index.js"></script>
   <script src="js/lang.js"></script>
+
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, doc, getDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-functions.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqHNXiqcQzAkP1DnSj_QvveG-0qEnrvxU",
+      authDomain: "a-n-fashion-54d05.firebaseapp.com",
+      projectId: "a-n-fashion-54d05",
+      storageBucket: "a-n-fashion-54d05.firebasestorage.app",
+      messagingSenderId: "378028019487",
+      appId: "1:378028019487:web:fb41e260d8822c32fd6a2a"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    
+    // Get Firebase services
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    const functions = getFunctions(app);
+
+    // Create wrappers to provide compatibility with the old API
+    window.db = {
+      collection: (path) => collection(db, path),
+      doc: (path) => doc(db, path),
+      getDoc: getDoc,
+      getDocs: getDocs,
+      query: query,
+      where: where
+    };
+    
+    window.storage = {
+      ref: (path) => ref(storage, path),
+      getDownloadURL: (storageRef) => getDownloadURL(storageRef)
+    };
+
+    // إضافة Functions للواجهة العامة
+    window.firebase = {
+      functions: () => ({
+        httpsCallable: (name) => httpsCallable(functions, name)
+      })
+    };
+    
+    // تعيين المتغيرات العامة
+    window.SHIPPING_COST = 120; // القيمة الافتراضية للشحن
+  </script>
+  
+  <script src="js/index.js"></script>
+  <script src="js/order-handler.js"></script>
+
+  <!-- التحقق من تحميل Firebase -->
+  <script>  console.log('التحقق من توفر Firebase...');
+  setTimeout(function() {
+    if (window.db && window.storage) {
+      console.log('✅ Firebase متاح وجاهز للاستخدام');
+      
+      // إعادة تحميل المنتجات بعد التأكد من جاهزية Firebase
+      if (typeof loadProductsFromFirebase === 'function') {
+        console.log('إعادة تحميل المنتجات من Firebase...');
+        loadProductsFromFirebase();
+      }
+      
+      // تحديث قيمة الشحن
+      if (typeof loadShippingCost === 'function') {
+        console.log('تحديث قيمة الشحن من Firebase...');
+        loadShippingCost();
+      }
+    } else {
+      console.error('❌ لم يتم تهيئة Firebase بشكل صحيح. تحقق من الاتصال أو الإعدادات.');
+    }
+
+    // التحقق مما إذا كانت المنتجات تُحمّل من Firebase
+    const productContainer = document.getElementById('product-PNJ001');
+    if (productContainer) {
+      const carousel = productContainer.querySelector('.carousel-inner');
+      console.log('حالة السلايدر للمنتج الأول:', carousel ? carousel.innerHTML : 'لم يتم العثور عليه');
+    }
+  }, 2000);
+  </script>
 </body>
 </html>
