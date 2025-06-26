@@ -1,0 +1,28 @@
+{
+  "name": "a-n-fashion-store",
+  "version": "1.0.0",
+  "description": "A.N FASHION - متجر الأزياء الإلكتروني",
+  "main": "index.html",
+  "scripts": {
+    "serve": "firebase serve --only hosting",
+    "deploy": "firebase deploy --only hosting",
+    "build:css": "sass sass/style.scss css/style.css",
+    "watch:css": "sass --watch sass/style.scss css/style.css"
+  },
+  "keywords": [
+    "ecommerce",
+    "fashion",
+    "store",
+    "firebase",
+    "panjabi",
+    "eid"
+  ],
+  "author": "A.N FASHION",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.8.1"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0"
+  }
+}

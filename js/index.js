@@ -17,50 +17,121 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Load hero content from Firebase
   async function loadHeroContent() {
     try {
+      console.log('Starting to load hero content...');
+      
+      // التأكد من وجود العناصر أولاً
+      const heroElements = {
+        offerBadge: document.querySelector('[data-i18n="hero.offerBadge"]'),
+        heading: document.querySelector('[data-i18n="hero.heading"]'),
+        description: document.querySelector('[data-i18n="hero.description"]'),
+        viewCollectionButton: document.querySelector('[data-i18n="hero.viewCollectionButton"]'),
+        carousel: document.querySelector('.carousel-inner')
+      };
+      
+      console.log('Hero elements found:', {
+        offerBadge: !!heroElements.offerBadge,
+        heading: !!heroElements.heading,
+        description: !!heroElements.description,
+        button: !!heroElements.viewCollectionButton,
+        carousel: !!heroElements.carousel
+      });
+      
       const { storage, db } = await waitForFirebase();
       
-      // Load hero images from Storage
+      // Load hero images from Storage and Firestore
       const heroCarouselInner = document.querySelector('.carousel-inner');
-      for (let i = 1; i <= 3; i++) {
+      if (heroCarouselInner) {
+        // أولاً نحاول تحميل الصور من heroImages collection
         try {
-          const heroRef = storage.ref(`hero/hero${i}.jpg`);
-          const imageUrl = await heroRef.getDownloadURL();
-          const carouselItem = heroCarouselInner.children[i - 1];
-          if (carouselItem) {
-            const img = carouselItem.querySelector('img');
-            if (img) {
-              img.src = imageUrl;
+          const imagesDocRef = db.doc('heroImages/order');
+          const imagesDoc = await db.getDoc(imagesDocRef);
+          
+          if (imagesDoc.exists()) {
+            const imagesData = imagesDoc.data();
+            console.log('Hero images data from Firestore:', imagesData);
+            
+            for (let i = 1; i <= 3; i++) {
+              const imageData = imagesData[`image${i}`];
+              if (imageData?.url) {
+                const carouselItem = heroCarouselInner.children[i - 1];
+                if (carouselItem) {
+                  const img = carouselItem.querySelector('img');
+                  if (img) {
+                    img.src = imageData.url;
+                    console.log(`Hero image ${i} loaded from Firestore successfully`);
+                  }
+                }
+              }
+            }
+          } else {
+            console.log('No hero images document found in heroImages collection, trying Storage directly');
+            
+            // إذا لم توجد بيانات في Firestore، نحاول التحميل من Storage مباشرة
+            for (let i = 1; i <= 3; i++) {
+              try {
+                const heroRef = storage.ref(`hero/hero${i}.jpg`);
+                const imageUrl = await storage.getDownloadURL(heroRef);
+                const carouselItem = heroCarouselInner.children[i - 1];
+                if (carouselItem) {
+                  const img = carouselItem.querySelector('img');
+                  if (img) {
+                    img.src = imageUrl;
+                    console.log(`Hero image ${i} loaded from Storage successfully`);
+                  }
+                }
+              } catch (error) {
+                console.warn(`Failed to load hero${i} image from Storage:`, error.message);
+              }
             }
           }
         } catch (error) {
-          console.warn(`Failed to load hero${i} image:`, error);
+          console.error('Error loading hero images:', error);
         }
       }
 
       // Load hero text content from Firestore
-      const heroDoc = await db.collection('content').doc('hero').get();
-      const heroData = heroDoc.data();
-      
-      if (heroData) {
-        // استخدام اللغة الحالية أو الافتراضية
-        const currentLang = window.currentLang || localStorage.getItem('lang') || 'en';
-        const content = heroData[currentLang] || heroData.en; // Fallback to English
+      try {
+        const heroDocRef = db.doc('content/hero');
+        const heroDoc = await db.getDoc(heroDocRef);
         
-        // Update hero text content
-        const elements = {
-          offerBadge: document.querySelector('[data-i18n="hero.offerBadge"]'),
-          heading: document.querySelector('[data-i18n="hero.heading"]'),
-          description: document.querySelector('[data-i18n="hero.description"]'),
-          viewCollectionButton: document.querySelector('[data-i18n="hero.viewCollectionButton"]')
-        };
-        
-        if (elements.offerBadge && content.offerBadge) elements.offerBadge.textContent = content.offerBadge;
-        if (elements.heading && content.heading) elements.heading.textContent = content.heading;
-        if (elements.description && content.description) elements.description.textContent = content.description;
-        if (elements.viewCollectionButton && content.viewCollectionButton) elements.viewCollectionButton.textContent = content.viewCollectionButton;
+        if (heroDoc.exists()) {
+          const heroData = heroDoc.data();
+          console.log('Hero text data loaded:', heroData);
+          
+          // استخدام اللغة الحالية أو الافتراضية
+          const currentLang = window.currentLang || localStorage.getItem('lang') || 'en';
+          const content = heroData[currentLang] || heroData.en; // Fallback to English
+          
+          if (content) {
+            // Update hero text content only if elements exist
+            if (heroElements.offerBadge && content.offerBadge) {
+              heroElements.offerBadge.textContent = content.offerBadge;
+              console.log('Updated offer badge:', content.offerBadge);
+            }
+            if (heroElements.heading && content.heading) {
+              heroElements.heading.textContent = content.heading;
+              console.log('Updated heading:', content.heading);
+            }
+            if (heroElements.description && content.description) {
+              heroElements.description.textContent = content.description;
+              console.log('Updated description:', content.description);
+            }
+            if (heroElements.viewCollectionButton && content.viewCollectionButton) {
+              heroElements.viewCollectionButton.textContent = content.viewCollectionButton;
+              console.log('Updated button text:', content.viewCollectionButton);
+            }
 
-        console.log(`Hero content loaded for language ${currentLang}`);
+            console.log(`Hero content loaded and applied for language ${currentLang}`);
+          } else {
+            console.log('No content found for language:', currentLang);
+          }
+        } else {
+          console.log('Hero document does not exist in Firestore');
+        }
+      } catch (error) {
+        console.error('Error loading hero text content:', error);
       }
+      
     } catch (error) {
       console.error('Error loading hero content:', error);
     }
@@ -68,6 +139,47 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Load hero content on page load
   loadHeroContent();
+
+  // إعادة تحميل محتوى الهيرو كل 3 ثوانٍ للتأكد من التحميل
+  setTimeout(() => {
+    console.log('Retrying hero content load after 3 seconds...');
+    loadHeroContent();
+  }, 3000);
+
+  // اختبار مباشر للـ Firebase
+  setTimeout(async () => {
+    console.log('=== FIREBASE DIRECT TEST ===');
+    try {
+      const { db } = await waitForFirebase();
+      console.log('Firebase ready for test');
+      
+      // اختبار مباشر للوصول للوثيقة
+      const heroDocRef = db.doc('content/hero');
+      console.log('Document reference created:', heroDocRef);
+      
+      const heroDoc = await db.getDoc(heroDocRef);
+      console.log('Document fetched. Exists:', heroDoc.exists());
+      
+      if (heroDoc.exists()) {
+        const data = heroDoc.data();
+        console.log('Document data:', data);
+      }
+      
+      // اختبار الصور
+      const imagesDocRef = db.doc('heroImages/order');
+      const imagesDoc = await db.getDoc(imagesDocRef);
+      console.log('Images document exists:', imagesDoc.exists());
+      
+      if (imagesDoc.exists()) {
+        const imagesData = imagesDoc.data();
+        console.log('Images data:', imagesData);
+      }
+      
+    } catch (error) {
+      console.error('Direct Firebase test failed:', error);
+    }
+    console.log('=== END FIREBASE TEST ===');
+  }, 5000);
   
   document.querySelectorAll(".card-body").forEach(card => {
     const seeMore = card.querySelector(".see-more-link");
@@ -542,74 +654,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       }, 500);
     }
   }
-  // -------------------- ربط قسم الهيرو ب Firebase --------------------
-
-  // دالة تحميل محتوى الهيرو من Firebase
-  async function loadHeroContent() {
-    try {
-      const { db } = await waitForFirebase();
-      
-      // تحميل بيانات النصوص
-      const heroDoc = await db.getDoc(db.doc('content/hero'));
-      if (heroDoc.exists()) {
-        const data = heroDoc.data();
-        console.log('Hero content uploaded:', data);
-        
-        // تحديث النصوص حسب اللغة الحالية
-        updateHeroContent(data);
-      }
-      
-      // تحميل الصور
-      const imagesDoc = await db.getDoc(db.doc('heroImages/order'));
-      if (imagesDoc.exists()) {
-        const data = imagesDoc.data();
-        updateHeroImages(data);
-      }
-    } catch (error) {
-      console.error('Error loading hero content:', error);
-    }
-  }
-
-  // تحديث واجهة قسم الهيرو بالبيانات المحملة
-  function updateHeroContent(data) {
-    if (!data) return;
-    
-    const lang = window.currentLang || 'en';
-    const content = data[lang] || data.en;
-    
-    if (content) {
-      document.querySelector('[data-i18n="hero.offerBadge"]').textContent = content.offerBadge || '';
-      document.querySelector('[data-i18n="hero.heading"]').textContent = content.heading || '';
-      document.querySelector('[data-i18n="hero.description"]').textContent = content.description || '';
-      document.querySelector('[data-i18n="hero.viewCollectionButton"]').textContent = content.viewCollectionButton || '';
-    }
-  }
-
-  // تحديث صور الهيرو
-  function updateHeroImages(data) {
-    if (!data) return;
-    
-    const carousel = document.querySelector('#heroCarousel .carousel-inner');
-    if (!carousel) return;
-
-    // اضافة الصور حسب الترتيب
-    for (let i = 1; i <= 3; i++) {
-      if (data[`image${i}`]?.url) {
-        const item = carousel.querySelector(`.carousel-item:nth-child(${i})`);
-        if (item) {
-          const img = item.querySelector('img') || document.createElement('img');
-          img.src = data[`image${i}`].url;
-          img.alt = `Hero Image ${i}`;
-          img.className = 'd-block w-100 hero-img';
-          if (!item.contains(img)) item.appendChild(img);
-        }
-      }
-    }
-  }
-
-  // تشغيل تحميل محتوى الهيرو
-  loadHeroContent();
-
   // -------------------- ربط قسم المنتجات ب Firebase --------------------  // دالة تحميل بيانات المنتجات من فايربيس
   async function loadProductsFromFirebase() {
     try {
@@ -1145,6 +1189,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const newLang = e.detail.newLanguage;
     console.log(`📱 Language change event received: ${newLang}`);
     
+    // إعادة تحميل محتوى الهيرو باللغة الجديدة
+    console.log('Reloading hero content for new language...');
+    loadHeroContent();
+    
     // لا نحتاج لإعادة تحميل البيانات، فقط تحديث النصوص إذا كانت البيانات موجودة بالفعل
     if (window.updateProductsContent) {
       console.log('Updating existing product texts...');
@@ -1266,4 +1314,66 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // تصدير الدالة ليتم استخدامها في lang.js
   window.updateProductCardTexts = updateProductCardTexts;
+
+  // إضافة دالة اختبار عامة
+  window.testHeroSection = async function() {
+    console.log('=== Manual Hero Section Test ===');
+    await loadHeroContent();
+    console.log('=== Hero Test Complete ===');
+  };
+
+  // آخر محاولة لتحميل الهيرو
+  setTimeout(() => {
+    console.log('Final attempt to load hero content...');
+    if (typeof loadHeroContent === 'function') {
+      loadHeroContent();
+    }
+  }, 8000);
+
+  // دالة اختبار مباشرة للتأكد من Firebase
+  window.debugFirebase = async function() {
+    console.log('--- بدء اختبار Firebase ---');
+    
+    try {
+      console.log('1. التحقق من توفر db و storage...');
+      console.log('db:', window.db);
+      console.log('storage:', window.storage);
+      
+      if (!window.db || !window.storage) {
+        console.error('❌ db أو storage غير متاح');
+        return;
+      }
+      
+      console.log('2. اختبار قراءة content/hero...');
+      const heroDocRef = window.db.doc('content/hero');
+      console.log('heroDocRef:', heroDocRef);
+      
+      const heroDoc = await window.db.getDoc(heroDocRef);
+      console.log('heroDoc:', heroDoc);
+      console.log('heroDoc.exists():', heroDoc.exists());
+      
+      if (heroDoc.exists()) {
+        console.log('✓ تم العثور على content/hero');
+        console.log('البيانات:', heroDoc.data());
+      } else {
+        console.log('⚠️ لم يتم العثور على content/hero');
+      }
+      
+      console.log('3. اختبار قراءة heroImages/order...');
+      const imagesDocRef = window.db.doc('heroImages/order');
+      const imagesDoc = await window.db.getDoc(imagesDocRef);
+      
+      if (imagesDoc.exists()) {
+        console.log('✓ تم العثور على heroImages/order');
+        console.log('البيانات:', imagesDoc.data());
+      } else {
+        console.log('⚠️ لم يتم العثور على heroImages/order');
+      }
+      
+    } catch (error) {
+      console.error('❌ خطأ في اختبار Firebase:', error);
+    }
+    
+    console.log('--- انتهاء اختبار Firebase ---');
+  };
 });

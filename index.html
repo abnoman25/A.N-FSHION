@@ -697,46 +697,54 @@
   <!-- Order Form -->
   <section id="order-form" class="py-5 bg-light">
     <div class="container">
-      <h3 class="text-center mb-4" data-i18n="orderForm.heading">Place Your Order</h3>      <form id="checkout-form" class="row g-3 needs-validation" novalidate>        <!-- الاسم -->
+      <h3 class="text-center mb-4" data-i18n="orderForm.heading">Place Your Order</h3>
+      <form id="checkout-form" class="row g-3 needs-validation" novalidate> <!-- الاسم -->
         <div class="col-md-6">
           <label class="form-label" data-i18n="orderForm.name">Name</label> <sup>*</sup>
-          <input type="text" name="customer-name" class="form-control" placeholder="Enter your name" required data-placeholder="orderForm.namePlaceholder">
+          <input type="text" name="customer-name" class="form-control" placeholder="Enter your name" required
+            data-placeholder="orderForm.namePlaceholder">
           <div class="invalid-feedback">Please enter your name.</div>
         </div>
-
+  
         <!-- رقم الجوال -->
         <div class="col-md-6">
-          <label class="form-label"data-i18n="orderForm.phone">Phone Number</label> <sup>*</sup>
-          <input type="tel" name="customer-phone" class="form-control" placeholder="01XXXXXXXXX" pattern="01[0-9]{9}" maxlength="11" minlength="11" required data-placeholder="orderForm.phonePlaceholder">
+          <label class="form-label" data-i18n="orderForm.phone">Phone Number</label> <sup>*</sup>
+          <input type="tel" name="customer-phone" class="form-control" placeholder="01XXXXXXXXX" pattern="01[0-9]{9}"
+            maxlength="11" minlength="11" required data-placeholder="orderForm.phonePlaceholder">
           <div class="invalid-feedback">Please enter your phone number.</div>
         </div>
-
+  
         <!-- البريد الإلكتروني -->
         <div class="col-md-6">
           <label class="form-label" data-i18n="orderForm.email">Email (optional)</label>
-          <input type="email" name="customer-email" class="form-control" placeholder="Enter your email" data-placeholder="orderForm.emailPlaceholder">
+          <input type="email" name="customer-email" class="form-control" placeholder="Enter your email"
+            data-placeholder="orderForm.emailPlaceholder">
         </div>
-
+  
         <!-- المدينة -->
         <div class="col-md-6">
           <label class="form-label" data-i18n="orderForm.city">City</label> <sup>*</sup>
-          <input type="text" name="customer-city" class="form-control" placeholder="Enter your city" required data-placeholder="orderForm.cityPlaceholder">
+          <input type="text" name="customer-city" class="form-control" placeholder="Enter your city" required
+            data-placeholder="orderForm.cityPlaceholder">
           <div class="invalid-feedback">Please enter your city.</div>
         </div>
-
+  
         <!-- العنوان -->
         <div class="col-12">
           <label class="form-label" data-i18n="orderForm.address">Shipping Address</label> <sup>*</sup>
-          <textarea name="customer-address" rows="2" class="form-control" placeholder="Enter your full address: House number, area, street name, region, city..." required data-placeholder="orderForm.addressPlaceholder"></textarea>
+          <textarea name="customer-address" rows="2" class="form-control"
+            placeholder="Enter your full address: House number, area, street name, region, city..." required
+            data-placeholder="orderForm.addressPlaceholder"></textarea>
           <div class="invalid-feedback">Please enter your full address.</div>
         </div>
-
+  
         <!-- ملاحظات -->
         <div class="col-12">
           <label class="form-label" data-i18n="orderForm.notes">Notes (optional)</label>
-          <textarea name="notes" rows="2" class="form-control" placeholder="For example: Call an hour before arrival." data-placeholder="orderForm.notesPlaceholder"></textarea>
+          <textarea name="notes" rows="2" class="form-control" placeholder="For example: Call an hour before arrival."
+            data-placeholder="orderForm.notesPlaceholder"></textarea>
         </div>
-
+  
         <!-- المنتجات المضافة إلى السلة -->
         <div class="col-12">
           <label class="form-label">Products :</label>
@@ -744,18 +752,20 @@
             <!-- سيتم إدراج المنتجات هنا -->
           </div>
         </div>
-
+  
         <!-- Coupon Section -->
         <div class="mb-3">
           <label for="coupon-code" class="form-label" data-i18n="orderForm.couponCode">Have a Coupon?</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="coupon-code" placeholder="Enter coupon code" data-placeholder="orderForm.couponCodePlaceholder">
-            <button class="btn btn-outline-secondary" type="button" id="apply-coupon" data-i18n="orderForm.applyCouponButton">Apply</button>
+            <input type="text" class="form-control" id="coupon-code" placeholder="Enter coupon code"
+              data-placeholder="orderForm.couponCodePlaceholder">
+            <button class="btn btn-outline-secondary" type="button" id="apply-coupon"
+              data-i18n="orderForm.applyCouponButton">Apply</button>
           </div>
           <div id="coupon-message" class="form-text"></div>
           <div id="discount-amount" class="text-success mt-2"></div>
         </div>
-
+  
         <!-- Order Summary -->
         <div class="card mb-3">
           <div class="card-body">
@@ -763,10 +773,12 @@
             <div class="d-flex justify-content-between mb-2">
               <span data-i18n="orderForm.subtotal">Subtotal:</span>
               <span id="subtotal-price"></span>
-            </div>            <div class="d-flex justify-content-between mb-2">
+            </div>
+            <div class="d-flex justify-content-between mb-2">
               <span data-i18n="orderForm.shipping">Shipping:</span>
               <span id="shipping-cost">৳80</span>
-            </div>            <div class="d-flex justify-content-between mb-2 text-success" id="discount-row" style="display: none;">
+            </div>
+            <div class="d-flex justify-content-between mb-2 text-success" id="discount-row" style="display: none;">
               <span data-i18n="orderForm.discount">Discount:</span>
               <span id="discount-price">-৳0</span>
             </div>
@@ -777,12 +789,15 @@
             </div>
           </div>
         </div>
-
-        <span class="text-center" style="color: red;" data-i18n="orderForm.order_submission_note1">* You will be contacted shortly after submitting the application to confirm the application</span>
-        <span class="text-center" style="color: red;" data-i18n="orderForm.order_submission_note2">* If you are not contacted within 10 hours, please contact us directly or contact us via WhatsApp</span>
+  
+        <span class="text-center" style="color: red;" data-i18n="orderForm.order_submission_note1">* You will be contacted
+          shortly after submitting the application to confirm the application</span>
+        <span class="text-center" style="color: red;" data-i18n="orderForm.order_submission_note2">* If you are not
+          contacted within 10 hours, please contact us directly or contact us via WhatsApp</span>
         <!-- زر الإرسال -->
         <div class="col-12 text-center">
-          <button type="submit" class="btn btn-success confirm-order-btn px-4" data-i18n="orderForm.confirmOrderButton">Confirm Order - Pay on Delivery</button>
+          <button type="submit" class="btn btn-success confirm-order-btn px-4"
+            data-i18n="orderForm.confirmOrderButton">Confirm Order - Pay on Delivery</button>
         </div>
   
         <!-- روابط التواصل -->

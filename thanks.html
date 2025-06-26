@@ -191,13 +191,13 @@
       
       // إضافة إمكانية نسخ رقم الطلب
       orderIdElement.style.cursor = 'pointer';
-      orderIdElement.title = 'انقر لنسخ رقم الطلب';
+      orderIdElement.title = 'Click to copy the order number';
       
       orderIdElement.addEventListener('click', function() {
         navigator.clipboard.writeText(orderId).then(function() {
           // إظهار رسالة تأكيد
           const originalText = orderIdElement.textContent;
-          orderIdElement.textContent = 'تم النسخ!';
+          orderIdElement.textContent = 'Copied!';
           orderIdElement.style.color = '#28a745';
           
           setTimeout(() => {
@@ -205,11 +205,11 @@
             orderIdElement.style.color = '';
           }, 1500);
         }).catch(function() {
-          console.log('فشل نسخ رقم الطلب');
+          console.log('Failed to copy order number');
         });
       });
     } else {
-      orderIdElement.textContent = 'غير متوفر';
+      orderIdElement.textContent = 'Unavailable';
       orderIdElement.style.color = '#dc3545';
     }
     

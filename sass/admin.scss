@@ -1,0 +1,696 @@
+@import 'variables';
+
+// ===========================
+// صفحة تسجيل الدخول لمدير الموقع
+// ===========================
+body {
+  font-family: $base-font;
+  background-color: $bg-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 100vh;
+  font-family: $base-font;
+}
+
+.login-container {
+  background-color: $white;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h2 {
+  font-family: $heading-font;
+  color: $primary-color;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  input {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+}
+
+.login-btn {
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.attempts-message {
+  margin-top: 0.5rem;
+  color: lightgray;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+// Login Form Styles
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input[type="password"],
+    input[type="text"] {
+        width: 100%;
+        padding-right: 40px; // Space for the eye icon
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: none;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        color: lightgray;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+        &:hover {
+            color: $black;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        i {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+// ===========================
+// صفحة الإدارة
+// ===========================
+
+// Admin Layout
+.admin-body {
+  background-color: $secondary-color;
+  display: block;
+  height: auto;
+  padding-top: 64px; // ارتفاع الهيدر
+
+  @media (max-width: 991.98px) {
+    padding-left: 0;
+  }
+}
+
+// Header Styles
+.admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: $black;
+  color: $white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1030;
+  transition: transform 0.3s ease;
+
+  .container-fluid {
+    height: 100%;
+  }
+
+  .header-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .header-title {
+    font-size: 1.25rem;
+    margin: 0;
+    color: $white;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &.header-hidden {
+    transform: translateY(-100%);
+  }
+}
+
+// Sidebar Styles
+.admin-sidebar {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  bottom: 0;
+  width: 260px;
+  background-color: $white;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  z-index: 1020;
+  transition: transform 0.3s ease;
+
+  .sidebar-content {
+    padding: 1rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: $text-color;
+    text-decoration: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+
+    i {
+      margin-right: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    transform: translateX(-100%);
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+}
+
+// تنسيقات زر إظهار/إخفاء السايدبار
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: $white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: none;
+
+  @media (max-width: 991.98px) {
+    display: block;
+  }
+}
+
+// تنسيقات الخلفية المعتمة عند فتح السايدبار
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $overlay-color;
+  z-index: 1015;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
+
+// Main Content Wrapper
+.main-content-wrapper {
+  margin-left: 260px;
+  padding: 2rem;
+  transition: margin-left 0.3s ease;
+
+  @media (max-width: 991.98px) {
+    margin-left: 0;
+  }
+}
+
+// تنسيقات الأقسام
+.content-section {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+
+  &.d-none {
+    display: none;
+    opacity: 0;
+  }
+}
+
+// Main Content
+.admin-main {
+  padding: 2rem;
+  width: 100%;
+  background-color: #f8f9fa;
+
+  .container-fluid {
+    max-width: 1400px;
+  }
+
+  .content-section {
+    animation: fadeIn 0.3s ease;
+    
+    .section-header {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+// Content Section Styles
+.content-section {
+  .section-header {
+    margin-bottom: 2rem;
+
+    h2 {
+      color: $primary-color;
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// Hero Section Styles
+.section-content {
+  .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      color: $text-color;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Hero Images Grid
+.hero-images-grid {
+  .row {
+    margin: 0 -1rem;
+
+    [class*="col-"] {
+      padding: 1rem;
+    }
+  }
+}
+
+// Hero Image Upload
+.hero-image-upload {
+  position: relative;
+  margin-bottom: 1rem;
+
+  .image-preview {
+    position: relative;
+    width: 100%;
+    padding-top: 66.67%; // 3:2 Aspect ratio
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+      .image-overlay {
+        opacity: 1;
+      }
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    opacity: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .upload-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+  }
+
+  .image-info {
+    margin-top: 1rem;
+    text-align: center;
+
+    .slide-number {
+      font-weight: 600;
+      color: $text-color;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    small {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// Hero Content Form
+.hero-content-form {
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+
+    .input-group-text {
+      background-color: #f8f9fa;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-right: none;
+      padding: 0.75rem;
+
+      i {
+        color: $text-color;
+        opacity: 0.7;
+      }
+    }
+
+    .form-control {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 0.75rem;
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        border-color: $primary-color;
+
+        +.input-group-text {
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+
+  textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-text {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+
+    i {
+      margin-right: 0.5rem;
+    }
+
+    &.btn-primary {
+      background-color: $primary-color;
+      border-color: $primary-color;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        border-color: darken($primary-color, 10%);
+      }
+    }
+
+    &.btn-outline-secondary {
+      border-color: $primary-color;
+      color: $primary-color;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        color: $white;
+      }
+    }
+  }
+}
+
+// Product Card Styles
+.product-card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: none;
+  
+  .card-header {
+    background-color: $header-bg-color;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    
+    h5 {
+      color: $header-logo-color;
+    }
+  }
+  
+  .btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+  
+  .btn-outline-primary {
+    border-color: $primary-color;
+    color: $primary-color;
+    
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+}
+.small-img-preview {
+  width: 100%;
+  height: 100%;
+  min-height: 120px;;
+  max-height: 120px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+
+// تنسيقات قسم الطلبات
+#ordersSection {
+  .card {
+    border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    
+    .btn-primary {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        border-color: darken($primary-color, 10%);
+      }
+    }
+  }
+  
+  .badge {
+    &.bg-primary {
+      background-color: $primary-color !important;
+    }
+    
+    &.bg-secondary {
+      background-color: $header-bg-color !important;
+    }
+  }
+}
+
+// Responsive Styles
+@media (max-width: 991.98px) {
+  .admin-header {
+    position: fixed;
+    width: 100%;
+
+    .header-wrapper {
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .sidebar-toggle {
+      display: flex !important;
+      order: 1;
+    }
+
+    .header-title {
+      order: 2;
+      display: none;
+    }
+
+    .header-actions {
+      order: 3;
+      margin-left: auto;
+    }
+  }
+
+  .admin-sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+    background-color: $white;
+    
+    &.show {
+      transform: translateX(0);
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1015;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+
+    &.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  
+  .main-content-wrapper {
+    margin-left: 0;
+    width: 100%;
+    padding-top: 64px;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-header {
+    .header-actions {
+      .btn {
+        padding: 0.5rem;
+        
+        span {
+          display: none;
+        }
+
+        i {
+          margin: 0;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  .admin-main {
+    padding: 1rem;
+  }
+}
