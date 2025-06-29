@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://anfashion.store">
   <meta property="og:type" content="website">
 
-  <title>A.N FASHION | Eid Panjabi</title>
+  <title>Store - A.N FASHION</title>
   <link rel="icon" type="image/png" href="assets/images/logo.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -698,7 +698,9 @@
   <section id="order-form" class="py-5 bg-light">
     <div class="container">
       <h3 class="text-center mb-4" data-i18n="orderForm.heading">Place Your Order</h3>
-      <form id="checkout-form" class="row g-3 needs-validation" novalidate> <!-- الاسم -->
+      <form id="checkout-form" class="row g-3 needs-validation" novalidate> 
+        
+        <!-- الاسم -->
         <div class="col-md-6">
           <label class="form-label" data-i18n="orderForm.name">Name</label> <sup>*</sup>
           <input type="text" name="customer-name" class="form-control" placeholder="Enter your name" required
@@ -732,8 +734,8 @@
         <!-- العنوان -->
         <div class="col-12">
           <label class="form-label" data-i18n="orderForm.address">Shipping Address</label> <sup>*</sup>
-          <textarea name="customer-address" rows="2" class="form-control"
-            placeholder="Enter your full address: House number, area, street name, region, city..." required
+          <textarea name="customer-address" rows="2" class="form-control" required
+            placeholder="Enter your full address: House number, area, street name, region, city..."
             data-placeholder="orderForm.addressPlaceholder"></textarea>
           <div class="invalid-feedback">Please enter your full address.</div>
         </div>
@@ -741,13 +743,14 @@
         <!-- ملاحظات -->
         <div class="col-12">
           <label class="form-label" data-i18n="orderForm.notes">Notes (optional)</label>
-          <textarea name="notes" rows="2" class="form-control" placeholder="For example: Call an hour before arrival."
+          <textarea name="notes" rows="2" class="form-control" 
+            placeholder="For example: Call an hour before arrival."
             data-placeholder="orderForm.notesPlaceholder"></textarea>
         </div>
   
         <!-- المنتجات المضافة إلى السلة -->
         <div class="col-12">
-          <label class="form-label">Products :</label>
+          <label class="form-label" data-i18n="orderForm.products">Products :</label>
           <div id="cart-items" class="mb-3">
             <!-- سيتم إدراج المنتجات هنا -->
           </div>
@@ -853,6 +856,7 @@
     </div>
   </footer>
   <script src="js/lang.js"></script>
+  <script src="js/optimizations.js"></script>
 
   <!-- Firebase App (the core Firebase SDK) -->
   <script type="module">
@@ -878,7 +882,7 @@
     // Get Firebase services
     const db = getFirestore(app);
     const storage = getStorage(app);
-    const functions = getFunctions(app);
+    const functions = getFunctions(app, 'us-central1');
 
     // Create wrappers to provide compatibility with the old API
     window.db = {
@@ -902,39 +906,41 @@
       })
     };
     
+    // أيضاً إضافة functions مباشرة للوصول المباشر
+    window.functions = functions;
+    
     // تعيين المتغيرات العامة
     window.SHIPPING_COST = 120; // القيمة الافتراضية للشحن
   </script>
   
   <script src="js/index.js"></script>
-  <script src="js/order-handler.js"></script>
 
   <!-- التحقق من تحميل Firebase -->
-  <script>  console.log('التحقق من توفر Firebase...');
+  <script>  console.log('Check Firebase availability...');
   setTimeout(function() {
     if (window.db && window.storage) {
-      console.log('✅ Firebase متاح وجاهز للاستخدام');
-      
+      console.log('✅ Firebase is available and ready to use');
+
       // إعادة تحميل المنتجات بعد التأكد من جاهزية Firebase
       if (typeof loadProductsFromFirebase === 'function') {
-        console.log('إعادة تحميل المنتجات من Firebase...');
+        console.log('Reloading products from Firebase...');
         loadProductsFromFirebase();
       }
       
       // تحديث قيمة الشحن
       if (typeof loadShippingCost === 'function') {
-        console.log('تحديث قيمة الشحن من Firebase...');
+        console.log('Updating shipping cost from Firebase...');
         loadShippingCost();
       }
     } else {
-      console.error('❌ لم يتم تهيئة Firebase بشكل صحيح. تحقق من الاتصال أو الإعدادات.');
+      console.error('❌ Firebase has not been initialized correctly. Check your connection or settings.');
     }
 
     // التحقق مما إذا كانت المنتجات تُحمّل من Firebase
     const productContainer = document.getElementById('product-PNJ001');
     if (productContainer) {
       const carousel = productContainer.querySelector('.carousel-inner');
-      console.log('حالة السلايدر للمنتج الأول:', carousel ? carousel.innerHTML : 'لم يتم العثور عليه');
+      console.log('Product 1 slider status:', carousel ? carousel.innerHTML : 'Not found');
     }
   }, 2000);
   </script>
